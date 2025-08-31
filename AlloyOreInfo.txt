@@ -1,0 +1,13 @@
+Type | Bronze
+Ingots | 14
+mB/ore1 | 129
+mB/ore2 | 36
+Ratio_min ore1/ore2 [%] | 70
+Ratio_max ore1/ore2 [%] | 80
+
+Type | Rose Gold
+Ingots | 14
+mB/ore1 | 129
+mB/ore2 | 16
+Ratio_min ore1/ore2 [%] | 15
+Ratio_max ore1/ore2 [%] | 30
