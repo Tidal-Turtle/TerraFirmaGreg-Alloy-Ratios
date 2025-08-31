@@ -1,5 +1,7 @@
 This is version 0.1 of TerraFirmaGreg Alloy Ratios (TFG-AR).
+
 Python version: Python 3.12.2
+
 Other dependencies: as of 0.1, none
 
 You may improve the code, its functionality and otherwise change it so it fits your needs. Bug reports and suggestions are welcome. This stays open-source.
@@ -34,6 +36,8 @@ even in others, but I'm not sure. The program will communicate with you through 
 When you run the code (F5 or Top Left Toolbar > Run > Start debugging), TFG-AR will read the AlloyOreInfo.txt and one of two things will happen. A) If you only have one alloy inside
 the file, the program will automatically detect it and calculate it for you - everything you need to know will be written out in the Terminal. B) If you have two or more alloys
 inside the file, you will be presented with a choice - choose one of the alloys you're interested in and the results will be written out in the Terminal again.
+
+If you want to calculate again or for another alloy, you'll have to stop the debugging session and start it once again.
 
 You might encounter some edge cases that I already accounted for or errors that I did not have the time to catch.
 
