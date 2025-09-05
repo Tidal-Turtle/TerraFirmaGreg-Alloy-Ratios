@@ -43,7 +43,10 @@ def getAlloyRatio(alloy_type, total_ingots, ore1_mB, ore2_mB, ore_ratio_min, ore
         delta_mB = (row[0]*ore1_mB + row[1]*ore2_mB) - total_ingots*144
         n_temporary.append(delta_mB)
     #print('Step 3: ' + str(n_temporary))
+
+    return n_temporary, n_combinations, ore1_mB, ore2_mB, alloy_type, total_ingots
     
+def printResults(n_temporary, n_combinations, ore1_mB, ore2_mB, alloy_type, total_ingots):
     ## Step 4: Prepare necessary statistics for summary for user to read
     min_delta_mB = min(n_temporary)
     n_ore1 = n_combinations[n_temporary.index(min_delta_mB)][0]
@@ -52,6 +55,7 @@ def getAlloyRatio(alloy_type, total_ingots, ore1_mB, ore2_mB, ore_ratio_min, ore
     total_mB_new = n_ore1*ore1_mB + n_ore2*ore2_mB
     total_ingots_new = (total_mB_new)/144
 
+    ## Step 5: Print results
     if min_delta_mB == 0.0:
         print('RESULTS\nPerfect ratio! You won\'t waste any metal while making ' + alloy_type + '. For ' + str(total_ingots_new) + ' ingots, you will need ' + str(n_ore1) + ' of ore1 at ' + str(ore1_mB) 
           + 'mB/ore1 and ' + str(n_ore2) + ' of ore2 at ' + str(ore2_mB) + 'mB/ore2. The final ratio ore1/(ore1+ore2) is ' + str(final_ratio) + '%.\n')
@@ -67,23 +71,14 @@ def getAlloyRatio(alloy_type, total_ingots, ore1_mB, ore2_mB, ore_ratio_min, ore
     print('Final ratio (ore1/(ore1+ore2)): ' + str(final_ratio) + '%')
 
 def getAlloyOreInfo():
-    #Live input of numbers
-    #query_list = ['Total ingots of alloy you want: ', 'How many mB does every Ore1 give (mB/ore1)? ', 'How many mB does every Ore2 give (mB/ore2)? ']
-    #answer_list = []
-
-    #for i in range(len(query_list)):
-    #    query_answer = input(query_list[i])
-    #    answer_list.append(query_answer)
-    #getAlloyRatio(answer_list[0], answer_list[1], answer_list[2])
-
     with open('AlloyOreInfo.txt') as file:
-        alloy_info = []
-        alloy_types = []
+        alloy_types = [] # Keeps a list of all alloy types the user has entered into AlloyOreInfo.txt
+        alloy_info = [] # Keeps a list of information about the alloy and the ores the user has entered into AlloyOreInfo.txt (everything except the alloy type)
         counter = 1
         place_of_alloy_type = 1 # This is the line number in AlloyOreInfo.txt, where "Type" appears at. 
                                 # It is crucial that you update this whenever you add a line and break the pattern of the txt file
                                 # The data organisation might have to change, because I feel like it isn't conducive to changes very much (it is very much line-dependent and not
-                                # context-dependent). Right now, you can separate data sets by line. The code will ignore empty lines (they don't break the code)
+                                # context-dependent). Right now, you can separate data sets by line. The code will ignore empty lines (they don't break the code).
         
         for line in file:
             #print(counter)
@@ -139,6 +134,9 @@ def getAlloyOreInfo():
                 print('Sought ratio range (ore1/(ore1+ore2)): ' + str(alloy_info[i]) + '%-' + str(alloy_info[i+1]) + '%')
 
         alloy_info_index = min(temp_list)
-        getAlloyRatio(str(alloy_types[alloy_choice]), alloy_info[alloy_info_index], alloy_info[alloy_info_index+1], alloy_info[alloy_info_index+2], alloy_info[alloy_info_index+3], alloy_info[alloy_info_index+4])
 
-getAlloyOreInfo()
+        return alloy_types, alloy_choice, alloy_info, alloy_info_index
+
+alloy_types, alloy_choice, alloy_info, alloy_info_index = getAlloyOreInfo()
+n_temporary, n_combinations, ore1_mB, ore2_mB, alloy_type, total_ingots = getAlloyRatio(str(alloy_types[alloy_choice]), alloy_info[alloy_info_index], alloy_info[alloy_info_index+1], alloy_info[alloy_info_index+2], alloy_info[alloy_info_index+3], alloy_info[alloy_info_index+4])
+printResults(n_temporary, n_combinations, ore1_mB, ore2_mB, alloy_type, total_ingots)
