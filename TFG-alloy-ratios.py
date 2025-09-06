@@ -117,6 +117,8 @@ def getAlloyRatio(alloy_type, alloy_info_chosen):
             ore_mB_max = math.ceil((int(ore_ratio_list[i][1])*total_mB)/(int(ore_mB_list[i])*100))
             ore_mB_minmax_list.append([ore_mB_min, ore_mB_max])
 
+        print(ore_mB_minmax_list)
+
         ## Step 1: Find all combinations of number of each ore1, ore2 and ore3 within range [total_ingots, total_ingots_variation]
         for n_ore1 in range(ore_mB_minmax_list[0][0], ore_mB_minmax_list[0][1]):
             for n_ore2 in range(ore_mB_minmax_list[1][0], ore_mB_minmax_list[1][1]):
