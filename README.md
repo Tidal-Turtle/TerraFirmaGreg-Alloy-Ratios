@@ -1,8 +1,9 @@
-This is version 0.1 of TerraFirmaGreg Alloy Ratios (TFG-AR).
+This is version 0.2 of TerraFirmaGreg Alloy Ratios (TFG-AR).
 
 Python version: Python 3.12.2
 
-Other dependencies: as of 0.1, none
+Other dependencies:
+- math (v0.2)
 
 You may improve the code, its functionality and otherwise change it so it fits your needs. Bug reports and suggestions are welcome. This stays open-source.
 
@@ -19,30 +20,45 @@ materials, there is no progress. I also did not want to do all the math in my he
 many different tiers of ore, all with their own mB (millibucket) values, adding another layer of complexity to this otherwise manual process.
 
 # How it works.
-As of 0.1, TFG-AR takes 6 essential values from the AlloyOreInfo.txt file: 
+As of 0.2, TFG-AR takes at least 5 essential values from the AlloyOreInfo.txt file: 
 - Type (name of alloy), 
 - Ingots (number of ingots you want)
 - mB/ore1 (how many mB a single ore gives, the first one)
 - mB/ore2 (how many mB a single ore gives, the second one)
-- Ratio_min ore1/ore2 (the minimum ratio between total mB of ore1 and the total of mB you need for a specified number of ingots)
-- Ratio_max ore1/ore2 (the maximum ratio between total mB of ore1 and the total of mB you need for a specified number of ingots)
+- Ratio_ore1 (the ratio range for the first ore, the second/last one is not needed - it can be calculated)
+but at most 8 essential values:
+- Type, 
+- Ingots
+- mB/ore1
+- mB/ore2
+- mB/ore3
+- Ratio_ore1
+- Ratio_ore2
+- Ratio_ore3
 
 All of these values have to be hand written into the AlloyOreInfo.txt file - it's a small workload for a big time saver. You can find the min/max ratios for every alloy in the 
-actual game. The mB/ore depend on the tier of ore you want to use to make the alloy. The order of mB/ore1 and mB/ore2 inside the file is not important, BUT it is important that the 
-two ratios you provide are of the ore1 - you will otherwise get the wrong calculations or none. So, if you swap the two ores, you have to substitute the two ratios with two new ones.
+actual game. The mB/ore depend on the tier of ore you want to use to make the alloy. It is important that you maintain this structure, otherwise something will break. It is also important that the ratios correspond with the their respective ores. The program will still run if they don't match, but you will get the wrong results.
 
-Alright, you have the basic alloy information ready. What now? As of 0.1, I have only tested this program inside of Visual Studio Code. It is optimised to run in this debugger, maybe
+Alright, you have the basic alloy information ready. What now? As of 0.2, I have only tested this program inside of Visual Studio Code. It is optimised to run in this debugger, maybe
 even in others, but I'm not sure. The program will communicate with you through the Terminal (should be below the code). 
 When you run the code (F5 or Top Left Toolbar > Run > Start debugging), TFG-AR will read the AlloyOreInfo.txt and one of two things will happen. A) If you only have one alloy inside
 the file, the program will automatically detect it and calculate it for you - everything you need to know will be written out in the Terminal. B) If you have two or more alloys
-inside the file, you will be presented with a choice - choose one of the alloys you're interested in and the results will be written out in the Terminal again.
+inside the file, you will be presented with a choice - choose one of the alloys you're interested in and the results will be written out in the Terminal again (only use numbers, not words, when typing in your answer).
 
 If you want to calculate again or for another alloy, you'll have to stop the debugging session and start it once again.
 
-You might encounter some edge cases that I already accounted for or errors that I did not have the time to catch.
+You might encounter some edge cases and errors that I did not have the time to catch.
 
 # The Algorithm
-How TFG-AR determines the best possible combination for your usecase involves 3 steps and some math. For two ores, it is essentially a system of two equations. This is not a 1:1 description of the code. The symbols and names have been changed but the process is completely identical.
+How TFG-AR determines the best possible combination for your usecase involves 4 steps and some math. For two ores, it is essentially a system of two equations, for three, a system of three equations. This is not a 1:1 description of the code. The symbols and names have been changed but the process is completely identical.
+## Step 0 - Optimisation
+Before the true search begins, the program has to optimise. Let's say you want to make 14 ingots of Bismuth Bronze. Bismuth Bronze is made from three different ores:
+- Copper (50%-65%) - ore1
+- Zinc (20%-30%) - ore2
+- Bismuth (10%-20%) - ore3
+You have raw copper ore that gives you 129mB/ore each, zinc (31mB/ore) and bismuth (48mB/ore). You want to know how much (n) of every ore you need for 14 ingots of Bismuth Bronze. The program will be solving for n_ore1, n_ore2 and n_ore3.
+
+To determine a small (optimised) range in which the program should look for n_ore, the program takes advantage of the ratio ranges for each ore (they are written just above). Equations is as follows: $\frac{ratio_ore1_min*total_mB}{mB_ore1}$
 ## Step 1
 After you choose the alloy to solve for, the program starts searching through different values a and b. Value a is the amount of 'Ore 1', connected to it is c, the amount of mB (millibuckets) a single 'Ore 1' provides. Value b is similar to value a and value d is similar to value c, but they are connected to 'Ore2'. Every ingot is 144mB. 14 ingots equate to 2016mB, 15 ingots equate to 2160mB. The sum of a\*c and b\*d must be above 2016mB, but below 2160mB. The program looks through different combinations of a and b, adhering to these two rules and creates a list of lists. As of 0.1, the algorithm starts searching in a range [0 to number of ingots+255], which is arbitrary, but the program should never reach this high number of iterations. This search algorithm is not efficient and can be improved - more on this under the "Room for improvement?" section.
 ## Step 2
