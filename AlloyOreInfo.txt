@@ -1,32 +1,38 @@
+
+
 Type | Bronze (129/36)
 Ingots | 14
 mB/ore1 | 129
 mB/ore2 | 36
-ratio_ore1 | 70%-80%
+ratio_ore1 | 70.00%-80.00%
+ratio_ore2 | 20.00%-30.00%
 
 Type | Bronze (129/84)
 Ingots | 16
 mB/ore1 | 129
 mB/ore2 | 84
-ratio_ore1 | 70%-80%
+ratio_ore1 | 70.00%-80.00%
+ratio_ore2 | 20.00%-30.00%
 
 Type | Copper (129/31)
 Ingots | 2
 mB/ore1 | 129
 mB/ore2 | 31
-ratio_ore1 | 0%-100%
+ratio_ore1 | 0.00%-100.00%
+ratio_ore2 | 0.00%-100.00%
 
 Type | Rose Gold (129/16)
 Ingots | 14
 mB/ore1 | 129
 mB/ore2 | 16
-ratio_ore1 | 15%-30%
+ratio_ore1 | 15.00%-30.00%
+ratio_ore2 | 70.00%-85.00%
 
 Type | Bismuth Bronze (129/31/48)
 Ingots | 14
 mB/ore1 | 129
 mB/ore2 | 31
 mB/ore3 | 48
-ratio_ore1 | 50%-65%
-ratio_ore2 | 20%-30%
-ratio_ore3 | 10%-20%
+ratio_ore1 | 50.00%-65.00%
+ratio_ore2 | 20.00%-30.00%
+ratio_ore3 | 10.00%-20.00%
