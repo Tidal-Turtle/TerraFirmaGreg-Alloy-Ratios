@@ -26,5 +26,5 @@ Changelog:
 - Added dynamic reading and saving from and to AlloyOreInfo.txt and settings.txt. All changes are reflected in the GUI.
 - Fragmented certain functions into their own .py files (modules) to avoid cycling referencing and for cleanliness.
 - Added an icon for the main window and the settings window.
-- Removed some unnecessary code
-- Some bugfixes
+- Removed some unnecessary code.
+- Some bugfixes.
