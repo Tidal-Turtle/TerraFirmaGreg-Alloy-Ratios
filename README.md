@@ -117,3 +117,4 @@ find a pattern, if I ever want to generalise this. Having adapted the program to
 - Functionality: Step 3 does not account for two results with the same alloy loss. Find a way to account for it.
 - Functionality: Add a way for the user to edit the ingots headroom.
 - Functionality: A new mode: 'Ratio mode' that will show you the minimum ratios between ores and how many ingots you get, based on the ores you have. This mode wouldn't use the number of ingots as a parameter, but as a result, along with n_ore1, n_ore2, n_ore3, etc.
+- Functionality: Always create a temporary log file and append the rest of logs to a big log file. Right now, a log file is created every time the program is opened. You end up with 100s of text files, which is not good.
