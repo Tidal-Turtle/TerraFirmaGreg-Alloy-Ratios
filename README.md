@@ -37,6 +37,8 @@ while yours might look like this:
 > C:\Users\TidalTurtle\Downloads\TerraFirmaGreg-Alloy-Ratios\images\window.ico
 
 So, you would have to replace the first with the second.
+
+Note: .exe needs the _internal folder in the same directory level. Additionally, .exe only works as long as it is in a subfolder of TerraFirmaGreg-Alloy-Ratios. Don't place it in the TerraFirmaGreg-Alloy-Ratios folder directly or outside of it. So, if you move .exe, move _internal as well.
 ## Code debugger
 You can also use a code debugger like Visual Studio Code (others probably work too). Simply navigate to app.py, open it in your debugger and start debugging it (in VSC this is F5 or Run > Start debugging). As long as you have Python 3.12.2 or newer and PyQt6 installed, everything should work.
 ## Recipe mode
