@@ -1,5 +1,4 @@
-import os, math, logging, datetime
-from getAlloyOreInfo import getAlloyOreInfo
+import math
 from handleInfoErrors import handleInfo, handleError, initLogFile
 
 global dir_name
@@ -155,11 +154,10 @@ def printResults(n_temporary, n_combinations, ore_mB_list, alloy_type, total_ing
             err_msg = 'Error (empty list): Somehow, I wasn\'t able to find any efficient combination for ' + str(total_ingots) + ' ingot of ' + str(alloy_type) + '.'
             print(err_msg, dir_name)
             handleError(err_msg, dir_name)
-            quit()
         else:
             err_msg = 'Error (empty list): Somehow, I wasn\'t able to find any efficient combination for ' + str(total_ingots) + ' ingots of ' + str(alloy_type) + '.'
             handleError(err_msg, dir_name)
-            quit()
+        return err_msg, dir_name
 
     if len(ore_mB_list) == 2:
         n_ore1 = n_combinations[n_temporary.index(min_delta_mB)][0]

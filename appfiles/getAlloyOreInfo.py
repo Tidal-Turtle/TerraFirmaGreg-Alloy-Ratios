@@ -1,14 +1,18 @@
 from handleInfoErrors import handleInfo, handleError
 from checkAlloyFormatting import checkAlloyFormatting
+import sys
 
 global dir_name
+global parent_dir
 dir_name = 'TFG'
+parent_dir = sys.path[0].split('appfiles')[0]
+#print(parent_dir)
 
 def getAlloyOreInfo(skipChoice=False):
     info_msg = getAlloyOreInfo.__name__ + '() function called.'
     handleInfo(info_msg, dir_name)
 
-    with open('AlloyOreInfo.txt') as file:
+    with open(parent_dir + 'AlloyOreInfo.txt') as file:
         alloy_dict = {}
         empty_line_counter = 0
         ore_counter = 0

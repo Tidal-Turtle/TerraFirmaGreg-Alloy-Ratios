@@ -4,7 +4,7 @@ import sys
 global dir_name
 global parent_dir
 dir_name = 'TFG'
-parent_dir = sys.path[0].replace('appfiles', '')
+parent_dir = sys.path[0].split('appfiles')[0]
 
 def saveAlloyInfo(filename, alloy_dict):
     alloy_types = list(alloy_dict.keys())
@@ -40,6 +40,8 @@ def saveAlloyInfo(filename, alloy_dict):
             new_data.append('\nmB/ore' + str(j) + ' | ' + alloy_dict[alloy_type_leftover].get('mB/ore')[j-1])
         for j in range(1, len(alloy_dict[alloy_type_leftover].get('ratio_ore'))+1):
             new_data.append('\nratio_ore' + str(j) + ' | ' + alloy_dict[alloy_type_leftover].get('ratio_ore')[j-1][0] + '%-' + alloy_dict[alloy_type_leftover].get('ratio_ore')[j-1][1] + '%')
+    for i, line in enumerate(new_data):
+            new_data[i] = line.replace(',', '.')    # SaveAlloyInfo.txt will always save decimals with a dot - the GUI comma is only visual.
 
     if new_data != []:
         open(parent_dir + filename, 'w').close()

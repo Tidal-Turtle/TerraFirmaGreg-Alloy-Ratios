@@ -3,7 +3,7 @@ import os, logging, datetime, sys
 global errorOutputs
 global parent_dir
 errorOutputs = []
-parent_dir = sys.path[0].replace('appfiles', '')
+parent_dir = sys.path[0].split('appfiles')[0]
 
 def getDatetime():
     global date_Ymd
