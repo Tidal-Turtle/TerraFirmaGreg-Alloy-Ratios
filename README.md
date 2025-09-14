@@ -71,7 +71,7 @@ Alright, you have the basic alloy information ready. What now? As of v0.3, the p
 
 You might encounter some edge cases and errors that I did not have the time to catch.
 
-# The Algorithm
+## The Algorithm
 How TFG-AR determines the best possible combination for your usecase involves 4 steps and some math. This is not a 1:1 description of the code. The symbols and names have been changed but the process is completely identical.
 ## Step 0 - Optimisation
 Before the true search begins, the program has to optimise. Let's say you want to make 14 ingots of Bismuth Bronze. Bismuth Bronze is made from three different ores:
@@ -89,18 +89,18 @@ This calculation is done for both the minimum and maximum values inside the rang
 - [4, 9] - ore3 (Bismuth).
 
 These are the ranges in which Step 1 will operate.
-## Step 1
+### Step 1
 The program starts searching through different values of n_ore1, n_ore2 and n_ore3. This is done in two loops when solving for two n_ore values, or in three loops when solving for three n_ore values. Of course, it looks through the ranges we prepared in Step 0. This is faster than starting from zero and searching through infinity or until you hit an arbitrary ceiling (as it was in v0.1). Additionally, the algorithm at this stage is looking at one more thing: the mB sum of the different combinations [n_ore1, n_ore2, n_ore3]:
 1) If the sum is smaller than total_mB (defined in Step 0), we ignore the combination.
 2) If the sum is in a range [total_mB, total_mB+144mB] (or 14 to 15 ingots worth of mB), we store the combination as a potential candidate.
 3) If the sum is bigger than total_mB, we stop the search (stop Step 1).
 
 Note: Sometimes, the results are not possible within the [14, 15] ingots range (or [n, n+1]). The '+1' here, I call it the 'ingots headroom'. It is currently hardcoded, but I will make this editable in the future, so that in the search for the most efficient ore combination (with the ores you have), you can extend the search. The only downside would be that you'd be making more than 14 (or more than n) ingots. The GUI will notify you if you encounter such a case.
-## Step 2
+### Step 2
 We have a list of lists of [n_ore1, n_ore2, n_ore3] combinations that sum up to somewhere between 2016mB and 2160mB. But not all of them have the ratio that we need (these ratios are defined in AlloyOreInfo.txt). In this example, we have to iterate through every value in the combination and check if it is inside of the ratio range. This narrows down the list of candidate combinations to just a handful - or none :(.
-## Step 3
+### Step 3
 We have the combinations and the right ratios. The last step is to see which combination wastes the least amount of metal when we make those 14 ingots. This is done by iterating through every [n_ore1, n_ore2, n_ore3] combination left, calculating the mB sum for it and substracting from it 2016mB (again, exactly 14 ingots worth of mB). The algorithm then chooses the combination with the smallest delta (difference). Usually, there is only one result, but there might be a world, where we get 2 results with the same alloy loss. This is not accounted for as of v0.3.
-## Output preparation
+### Output preparation
 After the main search is done, the program does some simple calculation and presents the data so you can read it (as of v0.3 in the GUI).
 
 # Room for improvement?
