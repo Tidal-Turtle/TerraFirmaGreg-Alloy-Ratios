@@ -43,6 +43,9 @@ You can also use a code debugger like Visual Studio Code (others probably work t
 As of v0.3, TFG-AR has implemented the 'Recipe mode'. Recipe mode gives you the number of ores you need to create an alloy. It takes into account the ratio ranges every ore in order for the smelted metal to turn into an alloy, the amount of mB every ore gives and the number of ingots that you want.
 ## Ratio mode
 As of v0.3, TFG-AR has not implemented the 'Ratio mode' yet. It will work similarly to Recipe mode, but it will give you the numbers of each ore for the minimum number of alloy ingots you can make. It will take into account ratio ranges, mB/ore and the alloy name (but no number of ingots).
+
+[Recipe mode before calculation](/images/TFG-AR_recipeMode1.png)
+[Recipe mode after calculation](/images/TFG-AR_recipeMode2.png)
 # How it works
 As of v0.3, TFG-AR takes at least 5 essential values from the AlloyOreInfo.txt file: 
 - Type (name of alloy), 
