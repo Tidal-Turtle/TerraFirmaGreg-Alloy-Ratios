@@ -1,1 +1,1 @@
-pyinstaller --noconsole --icon=C:\Programing\TerraFirmaGreg-Alloy-Ratios\images\window.ico app.py
+pyinstaller --noconsole --icon=C:\Programing\TerraFirmaGreg-Alloy-Ratios\images\window.ico TFG-AR.py
