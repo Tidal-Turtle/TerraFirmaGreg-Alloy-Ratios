@@ -83,7 +83,7 @@ To determine a small (optimised) range in which the program should look for n_or
 This calculation is done for both the minimum and maximum values inside the range of ratios, for *every* ore that is related to this alloy. The result is a list of lists, such as: [[7, 11], [13, 20], [4, 9]]. Every number pair corresponds to one ore:
 - [7, 11] - ore1 (Copper)
 - [13, 20] - ore2 (Zinc)
-- [4, 9] - ore3 (Bismuth)).
+- [4, 9] - ore3 (Bismuth).
 
 These are the ranges in which Step 1 will operate.
 ## Step 1
