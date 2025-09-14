@@ -41,6 +41,7 @@ So, you would have to replace the first with the second.
 You can also use a code debugger like Visual Studio Code (others probably work too). Simply navigate to app.py, open it in your debugger and start debugging it (in VSC this is F5 or Run > Start debugging). As long as you have Python 3.12.2 or newer and PyQt6 installed, everything should work.
 ## Recipe mode
 As of v0.3, TFG-AR has implemented the 'Recipe mode'. Recipe mode gives you the number of ores you need to create an alloy. It takes into account the ratio ranges every ore in order for the smelted metal to turn into an alloy, the amount of mB every ore gives and the number of ingots that you want.
+
 ![Recipe mode before calculation](/images/TFG-AR_recipeMode1.png)
 ![Recipe mode after calculation](/images/TFG-AR_recipeMode2.png)
 ## Ratio mode
