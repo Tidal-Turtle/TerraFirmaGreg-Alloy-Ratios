@@ -44,8 +44,8 @@ As of v0.3, TFG-AR has implemented the 'Recipe mode'. Recipe mode gives you the 
 ## Ratio mode
 As of v0.3, TFG-AR has not implemented the 'Ratio mode' yet. It will work similarly to Recipe mode, but it will give you the numbers of each ore for the minimum number of alloy ingots you can make. It will take into account ratio ranges, mB/ore and the alloy name (but no number of ingots).
 
-[Recipe mode before calculation](/images/TFG-AR_recipeMode1.png)
-[Recipe mode after calculation](/images/TFG-AR_recipeMode2.png)
+![Recipe mode before calculation](/images/TFG-AR_recipeMode1.png)
+![Recipe mode after calculation](/images/TFG-AR_recipeMode2.png)
 # How it works
 As of v0.3, TFG-AR takes at least 5 essential values from the AlloyOreInfo.txt file: 
 - Type (name of alloy), 
